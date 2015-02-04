@@ -1,0 +1,47 @@
+[ui]
+username = Tomas Pilar <tpilar@solarflare.com>
+merge=kdiff3
+report_untrusted = 0
+
+[email]
+from=tpilar@solarflare.com
+
+[diff]
+git = True
+showfunc = True
+
+[trusted]
+groups = ci,eagle,contract,uk
+
+[merge-tools]
+kdiff3.args = $base $local $other -o $output
+
+[defaults]
+commit = -u "Tomas Pilar <tpilar@solarflare.com>"
+
+[extensions]
+hgext.mq=
+hgext.convert=
+hgext.graphlog=
+hgext.purge=
+rebase =
+reviewboard = /project/intranet/reviewboard-1.7.6/mercurial-reviewboard
+progress=
+color=
+
+[format]
+;; Mercurial 1.7 uses a backward-incompatible format for local repositories
+;; (the on-the-wire protocol is unchanged). Disable the "dotencode" format
+;; setting to be backward compatible with HG 1.6 and earlier.
+dotencode=False
+
+[reviewboard]
+server          = http://reviewboard/
+user            = tp
+
+[phases]
+publish = False
+
+[alias]
+changelog = log -r "sort(ancestors($2) and not ancestors($1) and not merge(), -rev)" --template '{rev} ({node|short}):  {desc|firstline}\n'
+
