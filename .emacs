@@ -319,7 +319,7 @@ either immediately or when it'sloaded."
 ;; If you edit it by hand, you could mess it up, so be careful.
 ;; Your init file should contain only one such instance.
 ;; If there is more than one, they won't work right.
-'(my-tab-face            ((((class color)) (:background "color-29"))) t)
+'(my-tab-face            ((((class color)) (:background "color-17"))) t)
 '(my-trailing-space-face ((((class color)) (:background "color-89"))) t)
 '(my-long-line-face ((((class color)) (:background "color-52"))) t)
  )

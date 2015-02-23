@@ -382,7 +382,7 @@ also `with-temp-buffer'."
 	 (set-buffer ,buffer-or-name)
 	 ,@body))))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User Variables:
 
@@ -617,7 +617,7 @@ Used when `whitespace-style' includes the value `tabs'."
   '((((class color) (background dark))
      (:background "grey22" :foreground "darkgray"))
     (((class color) (background light))
-     (:background "beige"  :foreground "lightgray"))
+     (:background "color-17"  :foreground "lightgray"))
     (t (:inverse-video t)))
   "Face used to visualize TAB."
   :group 'whitespace)
@@ -1099,7 +1099,7 @@ Any other value is treated as nil."
 			  (const :tag "Warn If Read-Only" warn-if-read-only))))
   :group 'whitespace)
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User commands - Local mode
 
@@ -1150,7 +1150,7 @@ See also `whitespace-newline' and `whitespace-display-mappings'."
   ;; sync states (running a batch job)
   (setq whitespace-newline-mode whitespace-mode))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User commands - Global mode
 
@@ -1241,7 +1241,7 @@ See also `whitespace-newline' and `whitespace-display-mappings'."
     ;; sync states (running a batch job)
     (setq global-whitespace-newline-mode global-whitespace-mode)))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User commands - Toggle
 
@@ -1494,7 +1494,7 @@ See `whitespace-style' and `indent-tabs-mode' for documentation."
     (global-whitespace-mode 0)
     (global-whitespace-mode 1)))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User commands - Cleanup
 
@@ -1726,7 +1726,7 @@ See also `tab-width'."
     (goto-char (match-end index))
     (funcall action (match-beginning index) (match-end index))))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; User command - report
 
@@ -1975,7 +1975,7 @@ cleaning up these problems."
 	      (whitespace-display-window (current-buffer)))))
 	has-bogus))))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Internal functions
 
@@ -2584,7 +2584,7 @@ Also refontify when necessary."
       ;; refontify
       (jit-lock-refontify))))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Hacked from visws.el (Miles Bader <miles@gnu.org>)
 
@@ -2673,7 +2673,7 @@ Also refontify when necessary."
        (setq whitespace-display-table-was-local nil
 	     buffer-display-table whitespace-display-table)))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 ;;;; Hook
 
@@ -2703,7 +2703,7 @@ It should be added buffer-locally to `write-file-functions'."
   (when (memq 'warn-if-read-only whitespace-action)
     (message "Can't %s: %s is read-only" msg (buffer-name))))
 
- 
+
 ;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;;
 
 
