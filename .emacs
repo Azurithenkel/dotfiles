@@ -115,6 +115,11 @@
 (when (fboundp 'blink-cursor-mode)
   (blink-cursor-mode -1))
 
+;; Crosshairs higlight
+(require 'crosshairs)
+(crosshairs-mode 1)
+
+
 ;; ===========================
 ;; Behaviour
 ;; ===========================
@@ -197,6 +202,13 @@
 )
 
 (add-hook 'c-mode-common-hook 'my-c-mode-common-hook)
+
+;; ===========================
+;; which func
+;; ===========================
+;; (which-function-mode 1)
+(eval-after-load "which-func"
+  '(setq which-func-modes '(java-mode c++-mode org-mode python-mode c-mode)))
 
 ;; ===========================
 ;; HTML/CSS stuff
