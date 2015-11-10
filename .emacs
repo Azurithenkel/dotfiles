@@ -56,7 +56,8 @@
 (global-set-key [f9] 'hexl-find-file)
 ;; use F6 to grep
 (global-set-key [f6] 'grep)
-
+;; use nabla as hyper
+(define-key key-translation-map [8711] 'event-apply-hyper-modifier)
 
 ;; goto line function C-c C-g
 (global-set-key [ (control c) (control g) ] 'goto-line)

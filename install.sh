@@ -24,6 +24,7 @@ ln -s "$PWD/.mplayer/config" ~/.mplayer/config
 ln -s "$PWD/.Xresources" ~/.Xresources
 ln -s "$PWD/.Xresources" ~/.Xdefaults
 xrdb -m ~/.Xresources
+ln -s "$PWD/.Xmodmap" ~/.Xmodmap
 
 # Finished.
 echo Dotfiles installation complete.
