@@ -1,3 +1,10 @@
-! Caps Lock -> Nabla
-clear Lock
-keycode 66 = nabla
+! Capslock
+clear	Lock
+keycode	66 = Hyper_L
+
+! Left Super
+clear	mod4
+add	mod4 = Super_L Super_R
+
+clear	mod3
+add	mod3 = Hyper_L Hyper_R
