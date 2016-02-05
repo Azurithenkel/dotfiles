@@ -1,15 +1,3 @@
-;;; Wrapper to make .emacs self-compiling.
-(defvar init-top-level t)
-(if init-top-level
-    (let ((init-top-level nil))
-      (if (file-newer-than-file-p "~/.emacs" "~/.emacs.elc")
-          (progn
-            (load "~/.emacs")
-            (byte-compile-file "~/.emacs")
-            )
-        (load "~/.emacs.elc")))
-  (progn
-
 ;; ============================
 ;; Add the elisp path
 ;; ============================
@@ -18,6 +6,7 @@
 ;;(add-to-list 'load-path "~/elisp/pcomplete-1.1.7")
 (add-to-list 'load-path "~/.emacs.d/include")
 (add-to-list 'load-path "~/.emacs.d/themes")
+(load-file "~/.emacs.d/include/emacs-for-python/epy-init.el")
 
 ;; ============================
 ;; Setup shell stuff
@@ -29,11 +18,6 @@
 ;; ============================
 ;; Setup syntax, background, and foreground coloring
 ;; ============================
-
-;;(set-background-color "Black")
-;;(set-foreground-color "White")
-;;(set-cursor-color "LightSkyBlue")
-;;(set-mouse-color "LightSkyBlue")
 
 (require 'color-theme)
 (color-theme-initialize)
@@ -56,15 +40,25 @@
 (global-set-key [f9] 'hexl-find-file)
 ;; use F6 to grep
 (global-set-key [f6] 'grep)
+;; use F8 to check jenkins
+(global-set-key [f8] 'butler-status)
+
+;; comment out region
+(global-set-key (kbd "H-c") 'comment-or-uncomment-region)
 
 ;; goto line function C-c C-g
 (global-set-key [ (control c) (control g) ] 'goto-line)
 
+;; navigation
+(global-set-key (kbd "<C-H-left>") 'previous-buffer)
+(global-set-key (kbd "<C-H-right>") 'next-buffer)
+(global-set-key (kbd "<H-left>") 'previous-multiframe-window)
+(global-set-key (kbd "<H-right>") 'next-multiframe-window)
+
 ;; undo and redo functionality with special module
 (require 'redo+)
-(global-set-key (kbd "C-x C-r") 'redo)
-(global-set-key [ (control x) (r)] 'redo)
-(global-set-key [ (control x) (control u)] 'undo)
+(global-set-key (kbd "H-i") 'redo)
+(global-set-key (kbd "H-u") 'undo)
 
 ;; ============================
 ;; Mouse Settings
@@ -172,6 +166,13 @@
 ;; highlight incremental search
 (setq search-highlight t)
 
+;; Highlight uncommited changes
+(add-hook 'prog-mode-hook 'turn-on-diff-hl-mode)
+(add-hook 'vc-dir-mode-hook 'turn-on-diff-hl-mode)
+
+;; Show parentheses
+(add-hook 'prog-mode-hook 'show-paren-mode)
+
 ;; kill trailing white space on save
 (require 'whitespace-nuke)
 (autoload 'nuke-trailing-whitespace "whitespace-nuke" nil t)
@@ -196,10 +197,6 @@
 ;; ==========================
 (defun my-c-mode-common-hook ()
   (turn-on-font-lock)
-  ;;(setq tab-width 8)
-  ;;(c-set-offset 'substatement-open 0)
-  ;;(c-set-offset 'case-label '+)
-  ;;(setq c-basic-offset 'tab-width)
   (c-set-style "linux")
 )
 
@@ -208,9 +205,7 @@
 ;; ===========================
 ;; which func
 ;; ===========================
-;; (which-function-mode 1)
-(eval-after-load "which-func"
-  '(setq which-func-modes '(java-mode c++-mode org-mode python-mode c-mode)))
+(add-hook 'prog-mode-hook 'which-function-mode)
 
 ;; ===========================
 ;; HTML/CSS stuff
@@ -267,7 +262,7 @@
   (insert "/*////////////////////////////////////*/\n"))
 
 ;; revert buffer stuff
-(global-set-key "\C-cr" 'revert-buffer)
+(global-set-key (kbd "H-w") 'revert-buffer)
 (global-auto-revert-mode)
 (setq auto-revert-interval 1)
 
@@ -295,10 +290,6 @@ either immediately or when it'sloaded."
   ;; it's not loaded yet, so add our bindings to the load-hook
   (add-hook 'dired-load-hook 'my-dired-init))
 
-;; use eshell
-;;(load "eshell-auto")
-;;(setq eshell-cmpl-cycle-completions -1)
-
 (require 'setnu)
 
 ;; resize man page to take up whole screen
@@ -319,68 +310,63 @@ either immediately or when it'sloaded."
 
 (require 'ahg)
 
-))
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
  '(auto-revert-interval 0.25)
- '(global-auto-revert-mode t))
+ '(elfeed-feeds
+   (quote
+    ("https://forums.spacebattles.com/forums/-/index.rss")))
+ '(elmo-imap4-default-server "webmail.solarflare.com")
+ '(global-auto-revert-mode t)
+ '(jenkins-api-token "90d3b64486ca4f3635d0a065b24001c6")
+ '(jenkins-url "http://ci-capture.uk.solarflarecom.com/")
+ '(jenkins-username "tp")
+ '(jenkins-viewname "capture")
+ '(minimap-always-recenter t)
+ '(minimap-dedicated-window t)
+ '(minimap-hide-fringes t)
+ '(minimap-minimum-width 20)
+ '(minimap-width-fraction 0.12)
+ '(package-archives
+   (quote
+    (("gnu" . "http://elpa.gnu.org/packages/")
+     ("melpa-stable" . "https://stable.melpa.org/packages/")
+     ("melpa" . "https://melpa.org/packages/"))))
+ '(send-mail-function (quote smtpmail-send-it))
+ '(smtpmail-debug-info t)
+ '(smtpmail-default-smtp-server "webmail.solarflare.com")
+ '(smtpmail-local-domain nil)
+ '(smtpmail-smtp-server "webmail.solarflare.com")
+ '(smtpmail-smtp-service 587)
+ '(smtpmail-smtp-user "tp")
+ '(smtpmail-stream-type (quote starttls))
+ '(template-use-package t)
+ '(user-mail-address "tpilar@solarflare.com"))
 
 (custom-set-faces
-;; custom-set-faces was added by Custom.
-;; If you edit it by hand, you could mess it up, so be careful.
-;; Your init file should contain only one such instance.
-;; If there is more than one, they won't work right.
-'(my-tab-face            ((((class color)) (:background "color-17"))) t)
-'(my-trailing-space-face ((((class color)) (:background "color-89"))) t)
-'(my-long-line-face ((((class color)) (:background "color-52"))) t)
- )
+ ;; custom-set-faces was added by Custom.
+ ;; If you edit it by hand, you could mess it up, so be careful.
+ ;; Your init file should contain only one such instance.
+ ;; If there is more than one, they won't work right.
+ '(my-long-line-face ((((class color)) (:background "color-52"))) t)
+ '(my-tab-face ((((class color)) (:background "color-17"))) t)
+ '(my-trailing-space-face ((((class color)) (:background "color-89"))) t))
 
+;; basic initialization, (require) non-ELPA packages, etc.
+(setq package-enable-at-startup nil)
+(package-initialize)
 
-(defun xah-run-current-file ()
-  "Execute the current file.
-For example, if the current buffer is the file xx.py, then it'll call 「python xx.py」 in a shell.
-The file can be php, perl, python, ruby, javascript, bash, ocaml, vb, elisp.
-File suffix is used to determine what program to run.
+;; Jenkins
+(with-eval-after-load 'butler
+  (add-to-list 'butler-server-list
+	       '(jenkins "capture"
+			 (server-address . "http://ci-capture.uk.solarflarecom.com/")
+			 (server-user . "tp")
+			 (server-password . "90d3b64486ca4f3635d0a065b24001c6"))))
 
-If the file is modified, ask if you want to save first.
+;; Python stuff
 
-URL `http://ergoemacs.org/emacs/elisp_run_current_file.html'
-version 2014-10-28"
-  (interactive)
-  (let* (
-         (ξsuffixMap
-          ;; (‹extension› . ‹shell program name›)
-          `(
-            ("php" . "php")
-            ("pl" . "perl")
-            ("py" . "python")
-            ("py3" . ,(if (string-equal system-type "windows-nt") "c:/Python32/python.exe" "python3"))
-            ("rb" . "ruby")
-            ("js" . "node") ; node.js
-            ("sh" . "bash")
-            ("clj" . "java -cp /home/xah/apps/clojure-1.6.0/clojure-1.6.0.jar clojure.main")
-            ("ml" . "ocaml")
-            ("vbs" . "cscript")
-            ;; ("pov" . "/usr/local/bin/povray +R2 +A0.1 +J1.2 +Am2 +Q9 +H480 +W640")
-            ))
-         (ξfName (buffer-file-name))
-         (ξfSuffix (file-name-extension ξfName))
-         (ξprogName (cdr (assoc ξfSuffix ξsuffixMap)))
-         (ξcmdStr (concat ξprogName " \""   ξfName "\"")))
-
-    (when (buffer-modified-p)
-      (when (y-or-n-p "Buffer modified. Do you want to save first?")
-        (save-buffer)))
-
-    (if (string-equal ξfSuffix "el") ; special case for emacs lisp
-        (load ξfName)
-      (if ξprogName
-          (progn
-            (message "Running…")
-            (shell-command ξcmdStr "*xah-run-current-file output*" ))
-        (message "No recognized program file suffix for this file.")))))
-
-;; End .emacs here
+(epy-setup-checker "pyflakes %f")

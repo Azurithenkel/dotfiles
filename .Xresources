@@ -53,13 +53,18 @@ xterm*jumpScroll:         true
 xterm*multiScroll:        true
 xterm*toolBar:            false
 
+! emacs ----------------------------------------------------------------------
+
+xterm*vt100.eightBitInput:	false
+xterm*vt100.formatOtherKeys: 	1
+
 ! xpdf -----------------------------------------------------------------------
 
 xpdf*enableFreetype:    yes
 xpdf*antialias:         yes
 xpdf*foreground:        black
 xpdf*background:        white
-xpdf*urlCommand:        /usr/bin/firefox %s
+xpdf*urlCommand:        /usr/bin/google-chrome %s
 
 
 ! x11-ssh-askpass ------------------------------------------------------------

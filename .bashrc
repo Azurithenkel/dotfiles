@@ -844,6 +844,7 @@ eval `cat ~/.dircolors`
 export CVSROOT=/project/ci/cvsroot
 
 alias seth='java -jar /home/ns/seth/deployed/seth.jar'
+alias db3="xterm -e ssh -t runbench-svr mysql -h runbench-db -u discover -p'9a!6bT7j' db3"
 
 ch ()
 {
@@ -864,3 +865,5 @@ alias mcdi='~ehc/bin/mcdi'
 alias mcreb="sudo -u root /runbench-install/cmdclient -c 'reboot;q' tlp=0;exit;"
 alias dwarff='LD_PRELOAD=/usr/lib/libz.so.1 ~/df_linux/df'
 alias whichos='grep `uname -r` /boot/grub/grub.conf -B2'
+#. /misc/apps/proxy/proxy.sh
+export PYTHONPATH=$PYTHONPATH:/home/tp/sauce/
