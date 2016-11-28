@@ -2,3 +2,8 @@
 	default = matching
 [user]
 	user = Tomas
+	name = Tomas Pilar
+	email = tpilar@solarflare.com
+[color]
+	ui = auto
+	diff = auto
