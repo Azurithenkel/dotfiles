@@ -35,10 +35,6 @@ if [ -f /etc/bash.bashrc ]; then
         . /etc/bash.bashrc   # --> Read /etc/bashrc, if present.
 fi
 
-#add local and v5 scripts
-export PATH=$PATH:~/bin/:~/v5/scripts/
-export PATH=$PATH:~/lib/
-
 #-------------------------------------------------------------
 # Automatic setting of $DISPLAY (if not set already).
 # This works for linux - your mileage may vary. ...
@@ -106,14 +102,6 @@ shopt -s extglob        # Necessary for programmable completion.
 # Disable options:
 shopt -u mailwarn
 unset MAILCHECK         # Don't want my shell to warn me of incoming mail.
-
-
-export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
-export HISTTIMEFORMAT="%H:%M > "
-export HISTIGNORE="&:bg:fg:ll:h"
-export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
-
-
 
 #-------------------------------------------------------------
 # Greeting, motd etc...
@@ -221,8 +209,6 @@ powerprompt     # This is the default prompt -- might be slow.
 #-------------------
 
 # The True Path: https://groups.google.com/forum/#!topic/alt.religion.emacs/nNdf_DRqKIU
-alias emacs='emacs -nw'
-alias emasc='emacs -nw'
 alias rm='rm -i'
 #alias cp='cp -i'
 alias mv='mv -i'
@@ -235,7 +221,6 @@ alias j='jobs -l'
 alias which='type -a'
 alias ..='cd ..'
 alias path='echo -e ${PATH//:/\\n}'
-alias man='/usr/bin/man'
 alias libpath='echo -e ${LD_LIBRARY_PATH//:/\\n}'
 alias print='/usr/bin/lp -o nobanner -d $LPDEST'
             # Assumes LPDEST is defined (default printer)
@@ -274,13 +259,6 @@ alias tree='tree -Csu'     # nice alternative to 'recursive ls'
 #-------------------------------------------------------------
 
 alias more='less'
-export PAGER=less
-export LESSCHARSET='latin1'
-export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
-   # Use this if lesspipe.sh exists
-export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
-:stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
-
 
 #-------------------------------------------------------------
 # spelling typos - highly personnal and keyboard-dependent :-)
@@ -312,15 +290,6 @@ function xtitle()      # Adds some text in the terminal frame.
 alias top='xtitle Processes on $HOST && top'
 alias make='xtitle Making $(basename $PWD) ; make'
 alias ncftp="xtitle ncFTP ; ncftp"
-
-# .. and functions
-function man()
-{
-    for i ; do
-        xtitle The $(basename $1|tr -d .[:digit:]) manual
-        command man -F -a "$i"
-    done
-}
 
 #-------------------------------------------------------------
 # Make the following commands run in background automatically:
@@ -840,9 +809,6 @@ complete -o default -F _meta_comp command type which man nice time
 eval `dircolors`
 eval `cat ~/.dircolors`
 
-#Something solarflare?
-export CVSROOT=/project/ci/cvsroot
-
 alias seth='java -jar /home/ns/seth/deployed/seth.jar'
 alias db3="xterm -e ssh -t runbench-svr mysql -h runbench-db -u discover -p'9a!6bT7j' db3"
 
@@ -865,5 +831,8 @@ alias mcdi='~ehc/bin/mcdi'
 alias mcreb="sudo -u root /runbench-install/cmdclient -c 'reboot;q' tlp=0;exit;"
 alias dwarff='LD_PRELOAD=/usr/lib/libz.so.1 ~/df_linux/df'
 alias whichos='grep `uname -r` /boot/grub/grub.conf -B2'
+alias upvote='/home/ehc/bin/karma'
+alias downvote='/home/ehc/bin/karma -d'
+alias man='MANWIDTH=120 LANG=en_GB.ISO-8859 man'
 #. /misc/apps/proxy/proxy.sh
-export PYTHONPATH=$PYTHONPATH:/home/tp/sauce/
+

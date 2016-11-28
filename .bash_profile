@@ -7,10 +7,21 @@ fi
 
 # User specific environment and startup programs
 
-PATH=$PATH:/home/ns/source/v5/scripts:/home/ns/tools/rhel6
-PYTHONPATH=/home/ns/source/runbench
+export PATH=$PATH:~/lib/:~/bin/:~/sauce/v5/scripts/:~/sauce/ivybase/scripts
+export PYTHONPATH=/home/tp/sauce/runbench:/home/tp/sauce/
 export CVSROOT=/project/ci/cvsroot
-export PATH
-export PYTHONPATH
+
 unset USERNAME
 
+export DICTIONARY='en_GB'
+export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
+export HISTTIMEFORMAT="%H:%M > "
+export HISTIGNORE="&:bg:fg:ll:h"
+export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
+
+export PAGER=less
+export LESSCHARSET='latin1'
+export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
+# Use this if lesspipe.sh exists
+export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
+:stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
