@@ -810,7 +810,9 @@ eval `dircolors`
 eval `cat ~/.dircolors`
 
 alias seth='java -jar /home/ns/seth/deployed/seth.jar'
-alias db3="xterm -e ssh -t runbench-svr mysql -h runbench-db -u discover -p'9a!6bT7j' db3"
+#alias db3="xterm -e ssh -t runbench-svr mysql -h runbench-db -u discover -p'9a!6bT7j' db3"
+alias db4="xterm -e ssh -t runbench-svr mysql -h runbench-db -u discover -p'xuxk11pmu' db4"
+
 
 ch ()
 {

@@ -22,6 +22,9 @@ export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
 export PAGER=less
 export LESSCHARSET='latin1'
 export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
+
 # Use this if lesspipe.sh exists
 export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
 :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+
+export LC_ALL=en_GB.UTF-8
