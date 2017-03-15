@@ -264,6 +264,10 @@ globalkeys = awful.util.table.join(
     -- Screensaver
     awful.key({ modkey, "Shift"   }, "i", function () awful.util.spawn("xscreensaver-command -lock") end),
 
+    -- Keepass
+    awful.key({ modkey, "Shift"   }, "k", function () awful.util.spawn("keepassx") end),
+
+
     awful.key({ modkey,           }, "l",     function () awful.tag.incmwfact( 0.05)    end),
     awful.key({ modkey,           }, "h",     function () awful.tag.incmwfact(-0.05)    end),
     awful.key({ modkey, "Shift"   }, "h",     function () awful.tag.incnmaster( 1)      end),
