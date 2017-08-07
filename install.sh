@@ -6,14 +6,13 @@ git submodule init && git submodule update
 
 # Remove all dotfiles from the home directory if present.
 echo Removing any existing dotfiles from your home directory.
-rm -rf ~/.emacs ~/.emacs.d ~/.bashrc ~/.bash_profile ~/.gitconfig ~/.hgrc ~/.config/awesome ~/.dircolors ~/.Xresources ~/.Xdefaults ~/.mplayer
+rm -rf ~/.bashrc ~/.bash_profile ~/.gitconfig ~/.hgrc ~/.config/awesome ~/.dircolors ~/.Xresources ~/.Xdefaults ~/.mplayer ~/.complete
 
 # Initialize symlinks.
 echo Creating symlinks in your home directory that point to this dotfiles repository.
-ln -s "$PWD/.emacs" ~/.emacs
-ln -s "$PWD/.emacs.d" ~/.emacs.d
 ln -s "$PWD/.bashrc" ~/.bashrc
 ln -s "$PWD/.bash_profile" ~/.bash_profile
+ln -s "$PWD/.complete" ~/.complete
 ln -s "$PWD/.gitconfig" ~/.gitconfig
 ln -s "$PWD/.hgrc" ~/.hgrc
 ln -s "$PWD/.dircolors" ~/.dircolors
