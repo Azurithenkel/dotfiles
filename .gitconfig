@@ -9,3 +9,6 @@
 	diff = auto
 [core]
 	excludesfile = /home/tp/.gitignore
+[alias]
+  glog = log --all --graph --decorate
+  commend = commit --amend --no-edit
