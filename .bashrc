@@ -205,7 +205,7 @@ _powerprompt()
 function powerprompt()
 {
 
-    PROMPT_COMMAND=find_git_branch; find_git_dirty; _powerprompt
+    PROMPT_COMMAND="find_git_dirty; find_git_branch; _powerprompt"
     XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\007\]"
     case $TERM in
         *term* | rxvt  )
@@ -541,5 +541,6 @@ alias whichos='grep `uname -r` /boot/grub/grub.conf -B2'
 alias upvote='/home/ehc/bin/karma'
 alias downvote='/home/ehc/bin/karma -d'
 alias man='MANWIDTH=120 LANG=en_GB.ISO-8859 man'
+alias gg='git glog'
 #. /misc/apps/proxy/proxy.sh
 
