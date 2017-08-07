@@ -143,7 +143,7 @@ trap _exit EXIT
 # Shell Prompt
 #-------------------------------------------------------------
 
-if [[ "${DISPLAY%%:0*}" != "" ]]; then
+if [[ "${DISPLAY%%:0}" != "" ]]; then
     HILIT=${red}   # remote machine: prompt will be partly red
 else
     HILIT=${cyan}  # local machine: prompt will be partly cyan
