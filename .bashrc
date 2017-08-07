@@ -114,6 +114,11 @@ blue='\e[0;34m'
 BLUE='\e[1;34m'
 cyan='\e[0;36m'
 CYAN='\e[1;36m'
+green='\e[0;32m'
+GREEN='\e[1;32m'
+yellow='\e[0;33m'
+YELLOW='\e[1;33m'
+
 NC='\e[0m'              # No Color
 # --> Nice. Has the same effect as using "ansi.sys" in DOS.
 
@@ -138,6 +143,32 @@ function _exit()        # Function to run upon exit of shell.
     echo -e "${RED}Hasta la vista, baby${NC}"
 }
 trap _exit EXIT
+
+#-------------------------------------------------------------
+# Git rev parse
+#-------------------------------------------------------------
+
+find_git_branch() {
+  # Based on: http://stackoverflow.com/a/13003854/170413
+  local branch
+  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+    if [[ "$branch" == "HEAD" ]]; then
+      branch=$(git rev-parse HEAD)
+    fi
+    GIT_BRANCH="($branch)"
+  else
+    GIT_BRANCH=""
+  fi
+}
+
+find_git_dirty() {
+  local status=$(git status --porcelain 2> /dev/null)
+  if [[ "$status" != "" ]]; then
+    GIT_DIRTY=" *"
+  else
+    GIT_DIRTY=""
+  fi
+}
 
 #-------------------------------------------------------------
 # Shell Prompt
@@ -174,13 +205,13 @@ _powerprompt()
 function powerprompt()
 {
 
-    PROMPT_COMMAND=_powerprompt
+    PROMPT_COMMAND=find_git_branch; find_git_dirty; _powerprompt
+    XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\a\]"
     case $TERM in
         *term* | rxvt  )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > \
-                 \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
+            PS1="${HILIT}[\d \A - \$LOAD]$NC\n[\u@\h \#] $yellow\w$NC $green\$GIT_BRANCH\$GIT_DIRTY$NC >               $XTERM_TITLE" ;;
         linux )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \W > " ;;
+            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \w > " ;;
         * )
             PS1="[\A - \$LOAD]\n[\u@\h \#] \W > " ;;
     esac
@@ -472,7 +503,7 @@ function corename()   # Get name of app that created a corefile.
     done
 }
 
-source .complete
+source ~/.complete
 
 # Local Variables:
 # mode:shell-script
