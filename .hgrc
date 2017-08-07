@@ -26,7 +26,7 @@ hgext.convert=
 hgext.graphlog=
 hgext.purge=
 rebase =
-reviewboard = /project/intranet/reviewboard-1.7.14/mercurial-reviewboard
+;reviewboard = /project/intranet/reviewboard-1.7.6/mercurial-reviewboard
 progress=
 color=
 
@@ -36,12 +36,13 @@ color=
 ;; setting to be backward compatible with HG 1.6 and earlier.
 dotencode=False
 
-[reviewboard]
-server          = http://reviewboard/
-user            = tp
+;[reviewboard]
+;server          = http://reviewboard/
+;user            = tp
 
 [phases]
 publish = False
 
 [alias]
+llog = log -l 6
 changelog = log -r "sort(ancestors($2) and not ancestors($1) and not merge(), -rev)" --template '{rev} ({node|short}):  {desc|firstline}\n'
