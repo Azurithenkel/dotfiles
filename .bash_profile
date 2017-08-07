@@ -28,3 +28,7 @@ export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
 :stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
 
 export LC_ALL=en_GB.UTF-8
+
+#Java home override due to ivy fedora 25 badness
+# export JAVA_HOME=$(readlink -f /usr/lib/jvm/java-*-openjdk-*/jre)
+
