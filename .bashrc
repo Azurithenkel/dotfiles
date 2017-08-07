@@ -188,9 +188,9 @@ function fastprompt()
     unset PROMPT_COMMAND
     case $TERM in
         *term* | rxvt )
-            PS1="${HILIT}[\h]$NC \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
+            PS1="\[${HILIT}\][\h]\[$NC\] \W > \[\033]0;\${TERM} [\u@\h] \w\007\]" ;;
         linux )
-            PS1="${HILIT}[\h]$NC \W > " ;;
+            PS1="\[${HILIT}\][\h]\[$NC\] \W > " ;;
         *)
             PS1="[\h] \W > " ;;
     esac
@@ -206,12 +206,14 @@ function powerprompt()
 {
 
     PROMPT_COMMAND=find_git_branch; find_git_dirty; _powerprompt
-    XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\a\]"
+    XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\007\]"
     case $TERM in
         *term* | rxvt  )
-            PS1="${HILIT}[\d \A - \$LOAD]$NC\n[\u@\h \#] $yellow\w$NC $green\$GIT_BRANCH\$GIT_DIRTY$NC >               $XTERM_TITLE" ;;
+            PS1="\[${HILIT}\][\d \A - \$LOAD]\[$NC\]\n[\u@\h \#] \[$yellow\]\w\[$NC\] \
+\[$green\]\$GIT_BRANCH\$GIT_DIRTY\[$NC\] > \
+              $XTERM_TITLE" ;;
         linux )
-            PS1="${HILIT}[\A - \$LOAD]$NC\n[\u@\h \#] \w > " ;;
+            PS1="\[${HILIT}\][\A - \$LOAD]\[$NC\]\n[\u@\h \#] \w > " ;;
         * )
             PS1="[\A - \$LOAD]\n[\u@\h \#] \W > " ;;
     esac

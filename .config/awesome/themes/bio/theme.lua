@@ -40,7 +40,8 @@ else
 end
 --}}}
 
-theme.wallpaper = "/home/tp/wall/wall.jpg"
+theme.wallpaper  = "/home/tp/wall/bsod.jpg"
+theme.wallpaper2 = "/home/tp/wall/tpl-crash.png"
 
 theme.font    = "Profont 8"
 --font          = DejaVu Sans Mono 8
