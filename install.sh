@@ -6,7 +6,7 @@ git submodule init && git submodule update
 
 # Remove all dotfiles from the home directory if present.
 echo Removing any existing dotfiles from your home directory.
-rm -rf ~/.bashrc ~/.bash_profile ~/.gitconfig ~/.hgrc ~/.config/awesome ~/.dircolors ~/.Xresources ~/.Xdefaults ~/.mplayer ~/.complete
+rm -rf ~/.bashrc ~/.bash_profile ~/.gitconfig ~/.hgrc ~/.config/awesome ~/.dircolors ~/.Xresources ~/.Xdefaults ~/.mplayer ~/.complete ~/.Xmodmap
 
 # Initialize symlinks.
 echo Creating symlinks in your home directory that point to this dotfiles repository.
