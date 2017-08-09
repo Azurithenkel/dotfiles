@@ -145,20 +145,37 @@ function _exit()        # Function to run upon exit of shell.
 trap _exit EXIT
 
 #-------------------------------------------------------------
-# Git rev parse
+# VC rev parse
 #-------------------------------------------------------------
 
-find_git_branch() {
-  # Based on: http://stackoverflow.com/a/13003854/170413
-  local branch
-  if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
-    if [[ "$branch" == "HEAD" ]]; then
-      branch=$(git rev-parse HEAD)
+find_hg_info() {
+    local branch
+    HG_DIRTY=""
+    HG_BRANCH=""
+    if branch=$(hg branch 2> /dev/null); then
+        local id=$(hg id 2> /dev/null)
+        if [[ $(echo $id | cut -d " " -f 2) != "tip" ]]; then
+            branch=$(echo $id | cut -d " " -f 2)
+        fi
+        if [[ $(echo $id | cut -d " " -f 1 | grep "+") != "" ]]; then
+            HG_DIRTY=" *"
+        fi
+        branch=$(echo $branch | sed 's/(//' | sed 's/)//' | sed 's/+//')
+        HG_BRANCH=" ($branch)"
     fi
-    GIT_BRANCH="($branch)"
-  else
-    GIT_BRANCH=""
-  fi
+}
+
+find_git_branch() {
+    # Based on: http://stackoverflow.com/a/13003854/170413
+    local branch
+    if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
+        if [[ "$branch" == "HEAD" ]]; then
+            branch=$(git rev-parse HEAD)
+        fi
+        GIT_BRANCH=" ($branch)"
+    else
+        GIT_BRANCH=""
+    fi
 }
 
 find_git_dirty() {
@@ -205,12 +222,12 @@ _powerprompt()
 function powerprompt()
 {
 
-    PROMPT_COMMAND="find_git_dirty; find_git_branch; _powerprompt"
+    PROMPT_COMMAND="find_git_dirty; find_git_branch; find_hg_info; _powerprompt"
     XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\007\]"
     case $TERM in
         *term* | rxvt  )
-            PS1="\[${HILIT}\][\d \A - \$LOAD]\[$NC\]\n[\u@\h \#] \[$yellow\]\w\[$NC\] \
-\[$green\]\$GIT_BRANCH\$GIT_DIRTY\[$NC\] > \
+            PS1="\[${HILIT}\][\d \A - \$LOAD]\[$NC\]\n[\u@\h \#] \[$yellow\]\w\[$NC\]\
+\[$green\]\$GIT_BRANCH\$GIT_DIRTY\[$NC\]\[$red\]\$HG_BRANCH\$HG_DIRTY\[$NC\] > \
               $XTERM_TITLE" ;;
         linux )
             PS1="\[${HILIT}\][\A - \$LOAD]\[$NC\]\n[\u@\h \#] \w > " ;;
