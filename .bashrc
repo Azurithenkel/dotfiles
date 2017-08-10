@@ -149,19 +149,25 @@ trap _exit EXIT
 #-------------------------------------------------------------
 
 find_hg_info() {
-    local branch
+    local branch tag npatches
     HG_DIRTY=""
     HG_BRANCH=""
     if branch=$(hg branch 2> /dev/null); then
         local id=$(hg id 2> /dev/null)
         if [[ $id != $(hg id -r $branch 2> /dev/null) ]]; then
-            branch=$(echo $id | cut -d " " -f 2)
+            branch=$(echo $id | cut -d " " -f 1)
+        fi
+        if tag=$(hg id -t 2> /dev/null | cut -d " " -f 1); then
+            tag="/$tag"
+        fi
+        if npatches=$(hg qapplied 2> /dev/null | wc -l); then
+            npatches="+$npatches"
         fi
         if [[ $(echo $id | cut -d " " -f 1 | grep "+") != "" ]]; then
             HG_DIRTY=" *"
         fi
         branch=$(echo $branch | sed 's/(//' | sed 's/)//' | sed 's/+//')
-        HG_BRANCH=" ($branch)"
+        HG_BRANCH=" ($branch)$npatches$tag"
     fi
 }
 
