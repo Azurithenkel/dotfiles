@@ -154,7 +154,7 @@ find_hg_info() {
     HG_BRANCH=""
     if branch=$(hg branch 2> /dev/null); then
         local id=$(hg id 2> /dev/null)
-        if [[ $(echo $id | cut -d " " -f 2) != "tip" ]]; then
+        if [[ $id != $(hg id -r $branch 2> /dev/null) ]]; then
             branch=$(echo $id | cut -d " " -f 2)
         fi
         if [[ $(echo $id | cut -d " " -f 1 | grep "+") != "" ]]; then
