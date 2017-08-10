@@ -157,11 +157,16 @@ find_hg_info() {
         if [[ $id != $(hg id -r $branch 2> /dev/null) ]]; then
             branch=$(echo $id | cut -d " " -f 1)
         fi
-        if tag=$(hg id -t 2> /dev/null | cut -d " " -f 1); then
+        tag=$(hg id -t 2> /dev/null | cut -d " " -f 1)
+        if [[ -n $tag ]]; then
             tag="/$tag"
+        else
+            tag=""
         fi
-        if npatches=$(hg qapplied 2> /dev/null | wc -l); then
+        if [[ npatches=$(hg qapplied 2> /dev/null | wc -l) -ne 0 ]]; then
             npatches="+$npatches"
+        else
+            npatches=""
         fi
         if [[ $(echo $id | cut -d " " -f 1 | grep "+") != "" ]]; then
             HG_DIRTY=" *"
