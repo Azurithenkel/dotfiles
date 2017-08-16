@@ -154,7 +154,7 @@ find_hg_info() {
     HG_BRANCH=""
     if branch=$(hg branch 2> /dev/null); then
         local id=$(hg id 2> /dev/null)
-        if [[ $id != $(hg id -r $branch 2> /dev/null) ]]; then
+        if [[ $(echo $id | sed 's/+//') != $(hg id -r $branch 2> /dev/null) ]]; then
             branch=$(echo $id | cut -d " " -f 1)
         fi
         tag=$(hg id -t 2> /dev/null | cut -d " " -f 1)
