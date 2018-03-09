@@ -10,20 +10,25 @@ rm -rf ~/.bashrc ~/.bash_profile ~/.gitconfig ~/.hgrc ~/.config/awesome ~/.dirco
 
 # Initialize symlinks.
 echo Creating symlinks in your home directory that point to this dotfiles repository.
-ln -s "$PWD/.bashrc" ~/.bashrc
-ln -s "$PWD/.bash_profile" ~/.bash_profile
-ln -s "$PWD/.complete" ~/.complete
-ln -s "$PWD/.gitconfig" ~/.gitconfig
-ln -s "$PWD/.hgrc" ~/.hgrc
-ln -s "$PWD/.dircolors" ~/.dircolors
+ln -sf "$PWD/.bashrc" ~/.bashrc
+ln -sf "$PWD/.bash_profile" ~/.bash_profile
+ln -sf "$PWD/.complete" ~/.complete
+ln -sf "$PWD/.gitconfig" ~/.gitconfig
+ln -sf "$PWD/.hgrc" ~/.hgrc
+ln -sf "$PWD/.dircolors" ~/.dircolors
 [ ! -d ~/.config ] && mkdir ~/.config
-ln -s "$PWD/.config/awesome" ~/.config/awesome
+ln -sf "$PWD/.config/awesome" ~/.config/awesome
 mkdir ~/.mplayer
-ln -s "$PWD/.mplayer/config" ~/.mplayer/config
-ln -s "$PWD/.Xresources" ~/.Xresources
-ln -s "$PWD/.Xresources" ~/.Xdefaults
+ln -sf "$PWD/.mplayer/config" ~/.mplayer/config
+ln -sf "$PWD/.Xresources" ~/.Xresources
+ln -sf "$PWD/.Xresources" ~/.Xdefaults
 xrdb -m ~/.Xresources
-ln -s "$PWD/.Xmodmap" ~/.Xmodmap
+ln -sf "$PWD/.Xmodmap" ~/.Xmodmap
+
+# Update mime
+mkdir -p ~/.local/share/mime/packages
+ln -sf "$PWD/application-x-javaws.xml" ~/.local/share/mime/packages/application-x-javaws.xml
+update-mime-database ~/.local/share/mime
 
 # Finished.
 echo Dotfiles installation complete.
