@@ -145,6 +145,18 @@ function _exit()        # Function to run upon exit of shell.
 trap _exit EXIT
 
 #-------------------------------------------------------------
+# Ivy reverse search
+#-------------------------------------------------------------
+
+find_fwf_by_edk2() {
+    grep $1 /project/ivy/solarflare/firmwarefamily/default/*/ivys/ivy.xml | grep edk2 | cut -d " " -f 1 | cut -d / -f 7 | sort
+}
+
+find_sfutils_by_fwf() {
+    grep $1 /project/ivy/solarflare/sfutils-linux/default/*/ivys/ivy.xml | grep firmwarefamily | cut -d " " -f 1 | cut -d / -f 7 | sort
+}
+
+#-------------------------------------------------------------
 # VC rev parse
 #-------------------------------------------------------------
 
@@ -181,7 +193,7 @@ find_git_branch() {
     local branch
     if branch=$(git rev-parse --abbrev-ref HEAD 2> /dev/null); then
         if [[ "$branch" == "HEAD" ]]; then
-            branch=$(git describe --tags)
+            branch=$(git describe --all --always)
         fi
         GIT_BRANCH=" ($branch)"
     else
