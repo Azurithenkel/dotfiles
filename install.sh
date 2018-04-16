@@ -25,10 +25,5 @@ ln -sf "$PWD/.Xresources" ~/.Xdefaults
 xrdb -m ~/.Xresources
 ln -sf "$PWD/.Xmodmap" ~/.Xmodmap
 
-# Update mime
-mkdir -p ~/.local/share/mime/packages
-ln -sf "$PWD/application-x-javaws.xml" ~/.local/share/mime/packages/application-x-javaws.xml
-update-mime-database ~/.local/share/mime
-
 # Finished.
 echo Dotfiles installation complete.
