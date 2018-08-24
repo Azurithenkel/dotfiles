@@ -10,5 +10,10 @@
 [core]
 	excludesfile = /home/tp/.gitignore
 [alias]
-  glog = log --all --graph --decorate
-  commend = commit --amend --no-edit
+	glog = log --all --graph --decorate
+	commend = commit --amend --no-edit
+[imap]
+	host = imaps://webmail.solarflare.com
+	User = tp@solarflarecom.com
+	Folder = Drafts
+	sslverify = true
