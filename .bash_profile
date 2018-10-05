@@ -7,7 +7,9 @@ fi
 
 # User specific environment and startup programs
 
-export PATH=$PATH:~/lib/:~/bin/:~/sauce/v5/scripts/:~/sauce/ivybase/scripts
+export PATH=$PATH:~/lib/:~/bin/:/local/sauce/v5/scripts/:/local/sauce/ivybase/scripts
+export PATH=$PATH:/local/sauce/v5/build/gnu_x86_64/tools/mc-comms
+
 export PYTHONPATH=/home/tp/sauce/runbench:/home/tp/sauce/
 export CVSROOT=/project/ci/cvsroot
 
