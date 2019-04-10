@@ -584,3 +584,31 @@ alias man='MANWIDTH=120 LANG=en_GB.ISO-8859 man'
 alias gg='git glog'
 #. /misc/apps/proxy/proxy.sh
 
+export DICTIONARY='en_GB'
+export TIMEFORMAT=$'\nreal %3R\tuser %3U\tsys %3S\tpcpu %P\n'
+export HISTTIMEFORMAT="%H:%M > "
+export HISTIGNORE="&:bg:fg:ll:h"
+export HOSTFILE=$HOME/.hosts    # Put list of remote hosts in ~/.hosts ...
+
+export PAGER=less
+export LESSCHARSET='latin1'
+export LESSOPEN='|/usr/bin/lesspipe.sh %s 2>&-'
+export GOPATH='/local/go'
+
+# Use this if lesspipe.sh exists
+export LESS='-i -N -w  -z-4 -g -e -M -X -F -R -P%t?f%f \
+:stdin .?pb%pb\%:?lbLine %lb:?bbByte %bb:-...'
+
+export LC_ALL=en_GB.UTF-8
+
+export PATH=$PATH:~/lib/:~/bin/:/local/sauce/v5/scripts/:/local/sauce/ivybase/scripts
+export PATH=$PATH:/local/sauce/v5/build/gnu_x86_64/tools/mc-comms
+
+export PYTHONPATH=/home/tp/sauce/runbench:/home/tp/sauce/
+export CVSROOT=/project/ci/cvsroot
+
+unset USERNAME
+
+
+
+
