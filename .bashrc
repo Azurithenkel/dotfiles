@@ -246,6 +246,8 @@ function powerprompt()
 {
 
     PROMPT_COMMAND="find_git_dirty; find_git_branch; _powerprompt"
+    HG_BRANCH=
+    HG_DIRTY=
     XTERM_TITLE="\[\033]0;\${TERM} [\u@\h] \w\007\]"
     case $TERM in
         *term* | rxvt  )
