@@ -1,0 +1,32 @@
+{
+    "configurations": [
+        {
+            "name": "Linux",
+            "includePath": [
+                "/local/sauce/uefi/SfcPkg/**",
+                "/local/sauce/edk2-upstream/MdePkg/**",
+                "/local/sauce/edk2-upstream/MdeModulePkg/**",
+                "/local/sauce/edk2-upstream/FmpDevicePkg/**",
+                "/local/sauce/edk2-upstream/ShellPkg/**"
+            ],
+            "forcedInclude": ["/local/sauce/edk2-upstream/MdePkg/Include/Uefi.h"],
+            "defines": [
+                "EFIAPI=__attribute__((ms_abi))",
+                "DISABLE_NEW_DEPRECATED_INTERFACES"
+            ],
+            "compilerPath": "/usr/bin/gcc -Wall" ,
+            "cStandard": "c11",
+            "cppStandard": "c++17",
+            "intelliSenseMode": "gcc-x64",
+            "browse": {
+                "limitSymbolsToIncludedHeaders": false,
+                "path": [
+                    "/local/sauce/edk2-upstream/MdePkg",
+                    "/local/sauce/edk2-upstream/MdeModulePkg",
+                    "/local/sauce/edk2-upstream/FmpDevicePkg"
+                ]
+            }
+        }
+    ],
+    "version": 4
+}
