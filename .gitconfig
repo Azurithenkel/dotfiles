@@ -17,3 +17,5 @@
 	User = tp@solarflarecom.com
 	Folder = Drafts
 	sslverify = true
+[diff]
+	tool = gvimdiff

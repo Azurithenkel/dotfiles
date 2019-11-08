@@ -379,6 +379,9 @@ function xpdf() { command xpdf "$@" & }
 # File & string-related functions:
 #-------------------------------------------------------------
 
+# Get the tail of hexdump
+function hextail() { hexdump -C < $1 | tail; } 
+
 # Find a file with a pattern in name:
 function ff() { find . -type f -iname '*'$*'*' -ls ; }
 
